@@ -10,7 +10,7 @@ datum = input ("Unesite datum (YYYY-MM-DD) za koji želite provjeriti radno vrij
 datum = dt.datetime.strptime(datum, "%Y-%m-%d")
 dan_u_tjednu = datum.weekday()
 
-if (dan_u_tjednu >= 5):
+if (dan_u_tjednu > 5):
     print ("Parking ne radi vikendom!")
 else: 
     print ("Parking radi! Provjeri radno vrijeme!")
