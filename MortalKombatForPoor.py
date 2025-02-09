@@ -3,6 +3,7 @@
 # The game will continue until one of the players health is equal to 0.
 # The game will display the winner and the loser.
 
+import random
 print ("Welcome to Mortal Kombat for Poor")
 print ("This is a simple game that allows two players to play against each other.")
 print ("There are three mandatory inputs for each player: name, health of the player and the damage that the player can inflict.")
@@ -65,7 +66,10 @@ while True:
             break
     print ("Invalid value! Please enter a number between 1 and 3!")
 
+# WHO ATTACKS FIRST?
 
+first_attacker = random.choice([player1_name, player2_name])
+print(f"{first_attacker} will attack first!")
 
 # GAME STARTED
 
@@ -77,20 +81,25 @@ while player1_health > 0 and player2_health > 0:
     print (f"Starting round, {round_number}.") 
 
 #PLAYER1 ATTACKS PLAYER2
- 
-    player2_health = player2_health - player1_damage
-    print (f"{player2_name} hits {player1_name}!")  
-    if player2_health <= 0:
-        print(f"Game over! {player1_name} wins! {player2_name} is dead!")
-        break
+    if first_attacker == player1_name:
+        player2_health = player2_health - player1_damage
+        print (f"{player2_name} hits {player1_name}!")  
+        if player2_health <= 0:
+            print(f"Game over! {player1_name} wins! {player2_name} is dead!")
+            break
 
 #PLAYER2 ATTACKS PLAYER1 
- 
-    player1_health = player1_health - player2_damage
-    print (f"{player2_name} hits {player1_name}!")
-    if player1_health <= 0:
-        print(f"Game over! {player2_name} wins! {player1_name} is dead!")
-        break
+    elif first_attacker == player2_name: 
+        player1_health = player1_health - player2_damage
+        print (f"{player2_name} hits {player1_name}!")
+        if player1_health <= 0:
+           print(f"Game over! {player2_name} wins! {player1_name} is dead!")
+           break
     
     
-
+#PLAYER1 ATTACKS BACK
+        player2_health = player2_health - player1_damage
+        print(f"{player1_name} hits {player2_name}!")
+        if player2_health <= 0:
+            print(f"Game over! {player1_name} wins! {player2_name} is dead!")
+            break
