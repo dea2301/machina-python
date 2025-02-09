@@ -80,26 +80,35 @@ while player1_health > 0 and player2_health > 0:
     round_number += 1
     print (f"Starting round, {round_number}.") 
 
-#PLAYER1 ATTACKS PLAYER2
+#PLAYER 1 ATTACKS PLAYER 2	
     if first_attacker == player1_name:
         player2_health = player2_health - player1_damage
         print (f"{player2_name} hits {player1_name}!")  
         if player2_health <= 0:
             print(f"Game over! {player1_name} wins! {player2_name} is dead!")
             break
+        
+        player1_health = player1_health - player2_damage
+        print (f"{player1_name} hits {player2_name}!")  
+        if player1_health <= 0:
+            print(f"Game over! {player2_name} wins! {player1_name} is dead!")
+            break
 
 #PLAYER2 ATTACKS PLAYER1 
-    elif first_attacker == player2_name: 
+    else:
         player1_health = player1_health - player2_damage
         print (f"{player2_name} hits {player1_name}!")
         if player1_health <= 0:
            print(f"Game over! {player2_name} wins! {player1_name} is dead!")
            break
     
-    
-#PLAYER1 ATTACKS BACK
         player2_health = player2_health - player1_damage
         print(f"{player1_name} hits {player2_name}!")
         if player2_health <= 0:
             print(f"Game over! {player1_name} wins! {player2_name} is dead!")
             break
+
+# FINAL RESULTS:
+
+print(f"==> Game ends! :D <==")
+print(f"{player1_name}: {player1_health} | {player2_name}: {player2_health} HP")
