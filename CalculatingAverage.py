@@ -21,7 +21,10 @@ while True:
     if identification.isdigit() and len(identification) == 6:
         id_student = int(identification)
         break
-    print("Invalid value! Please enter a six digit number!")
+    if id_student in students:
+        print ("ID is already in use. Please enter some other unique ID")
+    else:
+        print("Invalid value! Please enter a six digit number!")
 
 # CALCULATING AVERAGE OF THE CURRENT GRADES & ENTERING DESIRED AVERAGE!
 
@@ -36,7 +39,7 @@ grades = grades.split()
 number = len (grades)
 grades = list(map(int, grades))
 total = sum (grades)
-average = total / number
+average = round (total / number, 2)
 print (f"Your current average is: {average}")
 
 # ADDING DATA TO THE LIST "STUDENTS"
@@ -44,11 +47,12 @@ print (f"Your current average is: {average}")
 students.append ({
     "Full Name": full_name,
     "ID" : id_student,
-    "Grades" : grades })
+    "Grades" : grades,
+    "Current average" : average })
 
 
 while True:
-    desired_average = float(input("Enter the desired average you want to achieve: "))
+    desired_average = round (float(input("Enter the desired average you want to achieve: ")), 2)
 
     if desired_average > 5.0:
         print("Desired average cannot be higher than 5.0! Enter value between 1.0 - 5.0!")
@@ -77,7 +81,7 @@ while True:
 # L: target_grade = desired_average * (number + 1) - total
             
 
-target_grade = (desired_average * (number + 1) - total)
+target_grade = round (desired_average * (number + 1) - total, 2)
 print (f"Target grade {full_name} needs to achive is: {target_grade}!")
 
 
@@ -93,4 +97,5 @@ if desired_average < 5.0:
 
 print("Student Information:")
 for student in students:
-    print(f"Name: {student['Full Name']}, ID: {student['ID']}, Grades: {student['Grades']}")
+    print(f"Name: {student['Full Name']}, ID: {student['ID']}, Grades: {student['Grades']}, {student['Current average']}")
+    
